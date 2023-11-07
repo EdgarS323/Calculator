@@ -1,3 +1,8 @@
+//Grab Elements
+const numbers = document.querySelectorAll('.btn');
+const screen = document.querySelector('#screen-display');
+const deleteBtn = document.querySelector('.delete');
+const clearBtn = document.querySelector('.clear');
 // Operator functions
 
 const add = function (a, b) {

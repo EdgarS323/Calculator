@@ -7,6 +7,7 @@
 }
 body {
   background-color: rgb(227, 225, 221);
+  letter-spacing: 1px;
 }
 #main {
   height: 75vh;
@@ -84,4 +85,12 @@ a:active,
 a:hover {
   text-decoration: none;
   color: inherit;
+}
+/* Alignment for numbers on display */
+
+#screen-display {
+  position: relative;
+  top: 40px;
+  left: 280px;
+  font-size: 70px;
 }
