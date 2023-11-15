@@ -14,39 +14,49 @@
     <script src="https://kit.fontawesome.com/9b002801c8.js" crossorigin="anonymous"></script>
   </head>
   <body>
-    <main id="main">
+    <main>
       <div id="calculator">
         <div id="screen">
-          <div id="screen-display">33</div>
+          <div id="previous-input">33</div>
+          <div id="current-input">31</div>
         </div>
-        <div id="buttons">
+        <div class="row">
           <div id="clear">CLEAR</div>
           <div id="delete">DELETE</div>
+        </div>
+        <div class="row">
           <div class="num btn">7</div>
           <div class="num btn">8</div>
           <div class="num btn">9</div>
           <div class="operator btn">/</div>
+        </div>
+        <div class="row">
           <div class="num btn">4</div>
           <div class="num btn">5</div>
           <div class="num btn">6</div>
           <div class="operator btn">X</div>
+        </div>
+        <div class="row">
           <div class="num btn">1</div>
           <div class="num btn">2</div>
           <div class="num btn">3</div>
           <div class="operator btn">-</div>
+        </div>
+        <div class="row">
           <div class="num btn">0</div>
           <div class="num btn">.</div>
           <div id="sum" class="btn">=</div>
           <div class="operator">+</div>
         </div>
       </div>
+
+      <footer>
+        <span
+          >Copywrite &copy EdgarS323
+          <a target="_blank" href="https://github.com/EdgarS323"><i class="fa fa-github" style="font-size: 24px"></i></a
+        ></span>
+      </footer>
     </main>
-    <footer>
-      <span
-        >Copywrite &copy EdgarS323
-        <a target="_blank" href="https://github.com/EdgarS323"><i class="fa fa-github" style="font-size: 24px"></i></a
-      ></span>
-    </footer>
     <script src="app.js"></script>
   </body>
 </html>
