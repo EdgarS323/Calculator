@@ -1,6 +1,11 @@
 //Grab Elements
 
-// Operator functions
+const numbers = document.querySelectorAll('num');
+const operators = document.querySelector('.operator');
+const previousDisplay = document.querySelector('#previous-input');
+const currentDisplay = document.querySelector('#current-input');
+const clearDisplay = document.querySelector('#clear');
+const deleteCharacter = document.querySelector('#delete');
 
 const add = function (a, b) {
   return a + b;
