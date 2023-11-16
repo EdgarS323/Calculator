@@ -4,7 +4,7 @@ const numbers = document.querySelectorAll('.num');
 const operators = document.querySelectorAll('.operator');
 let previousDisplay = document.querySelector('#previous-input');
 let currentDisplay = document.querySelector('#current-input');
-const clearDisplay = document.querySelector('#clear');
+const clearButton = document.querySelector('#clear');
 const deleteCharacter = document.querySelector('#delete');
 const sum = document.querySelector('#sum');
 
@@ -12,6 +12,7 @@ const sum = document.querySelector('#sum');
 let num1 = '';
 let num2 = '';
 let operator = '';
+let operatorClicked = false;
 
 // Calculator Operations
 
@@ -33,17 +34,92 @@ const divide = function (a, b) {
 
 // Functions
 
-const operation = (num1, operator, num2) => {
-  operator(num1, num2);
-};
+function operate(num1, operator, num2) {
+  num1 = parseFloat(num1);
+  num2 = parseFloat(num2);
+
+  switch (operator) {
+    case 'multiply':
+      return multiply(num1, num2);
+    case 'divide':
+      return divide(num1, num2);
+    case 'subtract':
+      return subtract(num1, num2);
+    case 'add':
+      return add(num1, num2);
+    default:
+      return 'Error';
+  }
+}
+
+function deleteChar() {
+  currentDisplay.textContent = currentDisplay.textContent.slice(0, -1);
+}
+
+function clearDisplay() {
+  currentDisplay.textContent = '';
+  previousDisplay.textContent = '';
+  num1 = '';
+  num2 = '';
+  operator = '';
+  operatorClicked = false;
+}
+//Event Listeners
 
 numbers.forEach((number) => {
   number.addEventListener('click', (e) => {
-    num1 += e.target.innerText;
-    currentDisplay.textContent = num1;
+    if (operatorClicked) {
+      currentDisplay.textContent = e.target.innerText;
+      previousDisplay.textContent = operator;
+      operatorClicked = false;
+    } else {
+      currentDisplay.textContent += e.target.innerText;
+    }
   });
 });
 
 operators.forEach((operand) => {
-  operand.addEventListener('click', (e) => {});
+  operand.addEventListener('click', (e) => {
+    if (num1 === '') {
+      num1 = currentDisplay.innerText;
+    } else {
+      num2 = currentDisplay.innerText;
+    }
+    previousDisplay.textContent = currentDisplay.textContent;
+    currentDisplay.textContent = e.target.innerText;
+    switch (e.target.innerText) {
+      case 'x':
+        operator = 'multiply';
+        break;
+      case '/':
+        operator = 'divide';
+        break;
+      case '-':
+        operator = 'subtract';
+        break;
+      case '+':
+        operator = 'add';
+        break;
+      default:
+        console.log('You should never be seeing this');
+    }
+    operatorClicked = true;
+    console.log('num1', num1);
+    console.log('num2', num2);
+  });
 });
+
+//Calculating the sum function
+sum.addEventListener('click', (e) => {
+  previousDisplay.textContent = currentDisplay.textContent;
+  num2 = currentDisplay.textContent;
+  currentDisplay.textContent = operate(num1, operator, num2);
+});
+
+// Function to Reset Display & Variables
+
+clearButton.addEventListener('click', clearDisplay);
+
+// Delete One character function
+
+deleteCharacter.addEventListener('click', deleteChar);
