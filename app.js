@@ -107,8 +107,6 @@ operators.forEach((operand) => {
         console.log('You should never be seeing this');
     }
     operatorClicked = true;
-    console.log('num1', num1);
-    console.log('num2', num2);
   });
 });
 
@@ -116,7 +114,10 @@ operators.forEach((operand) => {
 sum.addEventListener('click', () => {
   previousDisplay.textContent = '';
   num2 = currentDisplay.textContent;
-  currentDisplay.textContent = operate(num1, operator, num2);
+  let sum = operate(num1, operator, num2);
+  console.log(sum);
+  if (sum.toString().length > 15) sum = parseInt(sum.toString().substring(0, 10));
+  currentDisplay.textContent = sum;
 });
 
 // Function to Reset Display & Variables
