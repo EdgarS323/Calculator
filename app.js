@@ -29,6 +29,9 @@ const multiply = function (a, b) {
 };
 
 const divide = function (a, b) {
+  if (b === 0) {
+    return 0;
+  }
   return a / b;
 };
 
@@ -69,8 +72,8 @@ function clearDisplay() {
 numbers.forEach((number) => {
   number.addEventListener('click', (e) => {
     if (operatorClicked) {
+      previousDisplay.textContent = currentDisplay.textContent;
       currentDisplay.textContent = e.target.innerText;
-      previousDisplay.textContent = operator;
       operatorClicked = false;
     } else {
       currentDisplay.textContent += e.target.innerText;
@@ -110,8 +113,8 @@ operators.forEach((operand) => {
 });
 
 //Calculating the sum function
-sum.addEventListener('click', (e) => {
-  previousDisplay.textContent = currentDisplay.textContent;
+sum.addEventListener('click', () => {
+  previousDisplay.textContent = '';
   num2 = currentDisplay.textContent;
   currentDisplay.textContent = operate(num1, operator, num2);
 });
